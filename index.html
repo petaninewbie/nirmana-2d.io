@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul & Lembar Kerja Siswa: Desain Grafis - Nirmana 2D</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #eff6ff;
+            --secondary: #0f172a;
+            --accent-canva: #00c4cc;
+            --accent-figma: #f24e1e;
+            --accent-word: #2b579a;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --text-heading: #0f172a;
+            --radius: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Sticky Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 24px;
+        }
+
+        .nav-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-print {
+            background-color: #475569;
+            color: #ffffff;
+        }
+
+        .btn-print:hover {
+            background-color: #334155;
+            transform: translateY(-1px);
+        }
+
+        .btn-download-doc {
+            background-color: var(--accent-word);
+            color: #ffffff;
+        }
+
+        .btn-download-doc:hover {
+            background-color: #1e3e70;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(43, 87, 154, 0.25);
+        }
+
+        .btn-reset {
+            background-color: #ef4444;
+            color: #ffffff;
+        }
+
+        .btn-reset:hover {
+            background-color: #dc2626;
+            transform: translateY(-1px);
+        }
+
+        /* Container & Layout */
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            border-radius: var(--radius);
+            padding: 44px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-header::after {
+            content: "";
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(37,99,235,0.3) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(37, 99, 235, 0.25);
+            border: 1px solid rgba(147, 197, 253, 0.3);
+            color: #93c5fd;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .hero-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 800px;
+        }
+
+        /* Cards & Sections */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 36px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 85px;
+            transition: var(--transition);
+        }
+
+        .card-header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 18px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .card-title {
+            font-size: 1.45rem;
+            color: var(--text-heading);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-title-icon {
+            width: 36px;
+            height: 36px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.05rem;
+            flex-shrink: 0;
+        }
+
+        /* Information Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .info-item {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-heading);
+        }
+
+        /* Headings & Text */
+        h2 { font-size: 1.35rem; color: var(--text-heading); margin: 24px 0 12px 0; font-weight: 700; }
+        h3 { font-size: 1.15rem; color: var(--text-heading); margin: 20px 0 10px 0; font-weight: 600; }
+        h4 { font-size: 1rem; color: var(--text-heading); margin: 16px 0 8px 0; font-weight: 600; }
+
+        p { margin-bottom: 12px; }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Content Boxes */
+        .concept-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 16px;
+        }
+
+        .concept-box strong {
+            color: var(--primary-dark);
+        }
+
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .software-card {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 24px;
+            background-color: #ffffff;
+            transition: var(--transition);
+        }
+
+        .software-card.canva {
+            border-top: 4px solid var(--accent-canva);
+        }
+
+        .software-card.figma {
+            border-top: 4px solid var(--accent-figma);
+        }
+
+        .software-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        /* Keyboard Shortcut Formatting */
+        kbd {
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-bottom: 2px solid #94a3b8;
+            border-radius: 5px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+            color: #0f172a;
+            display: inline-block;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.85em;
+            font-weight: 700;
+            padding: 2px 7px;
+            white-space: nowrap;
+        }
+
+        /* Custom Flowchart / Diagram Box */
+        .diagram-box {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.95rem;
+            margin: 14px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-heading);
+            font-weight: 700;
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        /* Form Controls for LKS */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-heading);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            background-color: #f8fafc;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        textarea.form-input {
+            min-height: 95px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .checkbox-label input[type="checkbox"],
+        .checkbox-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Image Upload Box Styles (With Drag & Drop) */
+        .upload-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 14px;
+        }
+
+        .upload-card {
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            background-color: #f8fafc;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .upload-card.dragover {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .upload-card:hover {
+            border-color: var(--primary);
+            background-color: #f0f6ff;
+        }
+
+        .upload-hint {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            max-height: 260px;
+            border-radius: 8px;
+            margin-top: 14px;
+            display: none;
+            border: 1px solid var(--border-color);
+            object-fit: contain;
+            background-color: #ffffff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Callout Tips */
+        .tip-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            border-radius: 0 10px 10px 0;
+            padding: 18px 22px;
+            margin: 24px 0;
+        }
+
+        .tip-box h4 {
+            color: #15803d;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Toast Alert Notification */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--secondary);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 2000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        /* Print Optimization */
+        @media print {
+            .navbar, .btn-action, .no-print, input[type="file"], .toast { display: none !important; }
+            body { background-color: #ffffff; color: #000000; padding: 0; font-size: 11pt; }
+            .container { max-width: 100%; padding: 0; margin: 0; }
+            .card { border: none; box-shadow: none; padding: 0; margin-bottom: 24px; page-break-inside: auto; }
+            .hero-header { background: none; color: #000000; padding: 0; margin-bottom: 20px; border-bottom: 2px solid #000; border-radius: 0; }
+            .hero-header::after { display: none; }
+            .hero-title { color: #000000; font-size: 1.8rem; }
+            .hero-subtitle { color: #333333; }
+            .hero-badge { border: 1px solid #000; color: #000; background: none; }
+            kbd { border: 1px solid #666; background: #fff; box-shadow: none; }
+            .diagram-box { background: #f1f5f9; color: #000; border: 1px solid #ccc; }
+            .form-input { border: 1px solid #999; background: #fff; }
+            .card-header { border-bottom: 2px solid #000; }
+            th { background-color: #e2e8f0; color: #000; }
+            .preview-img { display: block !important; margin: 10px auto; max-height: 280px; page-break-inside: avoid; }
+            .footer { display: none; }
+            table, tr, td, th { page-break-inside: avoid; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.6rem; }
+            .hero-header { padding: 24px; }
+            .nav-links { display: none; }
+            .card { padding: 20px; }
+            .software-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav class="navbar" aria-label="Navigasi Utama">
+        <div class="nav-container">
+            <div class="nav-title">
+                <span>🎨</span> Desain Grafis: Nirmana 2D
+            </div>
+            <div class="nav-actions">
+                <ul class="nav-links">
+                    <li><a href="#modul-aktivitas">Modul Aktivitas</a></li>
+                    <li><a href="#panduan-langkah">Langkah Pengerjaan</a></li>
+                    <li><a href="#sec-lks">LKS Siswa</a></li>
+                    <li><a href="#sec-praktikum">Modul Praktikum</a></li>
+                </ul>
+                <button class="btn-action btn-print" onclick="window.print()" title="Cetak halaman ini atau simpan sebagai PDF">🖨️ Cetak / PDF</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- Hero Header -->
+        <header class="hero-header">
+            <span class="hero-badge">Mata Pelajaran: Desain Grafis</span>
+            <h1 class="hero-title">Eksplorasi Elemen Dasar Nirmana 2D</h1>
+            <p class="hero-subtitle">Materi Pembelajaran, Panduan Praktikum Digital, dan Lembar Kerja Siswa Interaktif (Canva & Figma)</p>
+        </header>
+
+        <!-- SECTION 1: MODUL AKTIVITAS BELAJAR -->
+        <section id="modul-aktivitas" class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="card-title-icon">1</span>
+                    Modul Aktivitas Belajar: Eksplorasi Elemen Dasar Nirmana 2D
+                </h2>
+            </div>
+
+            <!-- Overview Grid -->
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Mata Pelajaran</div>
+                    <div class="info-value">Desain Grafis</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Topik</div>
+                    <div class="info-value">Elemen Dasar Dwimatra & Shapes</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Software / Tools</div>
+                    <div class="info-value">Canva / Figma</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Target Output</div>
+                    <div class="info-value">Elemen Nirmana Digital</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Bukti Karya</div>
+                    <div class="info-value">Kanvas Eksplorasi 2D</div>
+                </div>
+            </div>
+
+            <h3>1. Pemahaman Konsep: 3 Elemen Dasar Dwimatra</h3>
+            <p>Sebelum mulai berkarya secara digital, pahami bagaimana tiga elemen ini bekerja membentuk sebuah desain:</p>
+            
+            <div class="concept-box">
+                <p><strong>Titik (Point):</strong> Elemen visual paling sederhana. Titik menjadi pusat perhatian (<em>focal point</em>) dan awal dari semua bentuk. Dalam jumlah banyak dan kerapatan berbeda, kumpulan titik dapat menciptakan ritme atau bayangan.</p>
+            </div>
+            
+            <div class="concept-box">
+                <p><strong>Garis (Line):</strong> Jejak dari gerakan titik. Garis berfungsi memberikan arah, pembatas, struktur, serta menyampaikan kesan psikologis tertentu (misal: garis tegas, dinamis, atau tenang).</p>
+            </div>
+            
+            <div class="concept-box">
+                <p><strong>Bidang (Plane):</strong> Area tertutup dua dimensi yang dibentuk oleh garis yang saling bertemu. Bentuk dasar bidang meliputi geometri seperti lingkaran, persegi, dan segitiga.</p>
+            </div>
+
+            <h3>2. Panduan Cepat Navigasi Menu Shapes</h3>
+            <p>Pilih salah satu aplikasi yang ingin kamu gunakan (Canva atau Figma):</p>
+
+            <div class="software-grid">
+                <!-- Canva Box -->
+                <div class="software-card canva">
+                    <h4>A. Penggunaan di Canva</h4>
+                    <ol>
+                        <li>Buka Canva dan buat desain baru ukuran <strong>1080 x 1080 px</strong> (Square/Post Instagram).</li>
+                        <li>Pilih menu <strong>Elemen</strong> (<em>Elements</em>) di panel sebelah kiri.</li>
+                        <li>Cari bagian <strong>Garis & Bentuk</strong> (<em>Lines & Shapes</em>).</li>
+                        <li><strong>Shortcut Cepat:</strong>
+                            <ul>
+                                <li>Tekan huruf <kbd>C</kbd> di keyboard untuk memunculkan Lingkaran (<em>Circle</em>).</li>
+                                <li>Tekan huruf <kbd>R</kbd> untuk memunculkan Persegi (<em>Rectangle</em>).</li>
+                                <li>Tekan huruf <kbd>L</kbd> untuk memunculkan Garis (<em>Line</em>).</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Figma Box -->
+                <div class="software-card figma">
+                    <h4>B. Penggunaan di Figma</h4>
+                    <ol>
+                        <li>Buka Figma dan buat <em>Frame</em> baru (<kbd>F</kbd>) berukuran <strong>1080 x 1080 px</strong>.</li>
+                        <li>Akses menu <strong>Shape Tools</strong> di toolbar atas (ikon Persegi).</li>
+                        <li><strong>Shortcut Cepat:</strong>
+                            <ul>
+                                <li><kbd>R</kbd> : Rectangle (Bidang/Persegi)</li>
+                                <li><kbd>O</kbd> : Ellipse (Bidang Lingkaran / Titik)</li>
+                                <li><kbd>L</kbd> : Line (Garis)</li>
+                                <li><kbd>P</kbd> : Pen Tool (Untuk membuat garis atau bidang kustom)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <h3>3. Aktivitas Siswa: "Kanvas Eksplorasi 2D"</h3>
+            <p><strong>Instruksi Tugas:</strong> Buat sebuah komposisi visual Nirmana 2D non-representasional (abstrak) yang menggabungkan elemen titik, garis, dan bidang pada satu kanvas digital.</p>
+            
+            <h4>Aturan Main Aktivitas:</h4>
+            <ol>
+                <li><strong>Tanpa Tekstur & Gambar:</strong> Gunakan warna solid/flat (<em>flat color</em>). Dilarang menggunakan foto, tekstur, atau efek gradasi yang kompleks.</li>
+                <li><strong>Eksplorasi Skala & Posisi:</strong> Mainkan variasi ukuran (besar-kecil), rotasi, kerapatan, serta penataan (<em>layout</em>) elemen visual.</li>
+                <li><strong>Jumlah Halaman:</strong> Buat <strong>2 variasi komposisi</strong> berbeda di dalam satu file proyek/kanvas:
+                    <ul>
+                        <li><em>Variasi 1:</em> Fokus pada irama dan pengulangan (<em>repetition/pattern</em>).</li>
+                        <li><em>Variasi 2:</em> Fokus pada kontras dan pusat perhatian (<em>focal point</em>).</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>4. Format Pengumpulan Karya (Bukti Karya Siswa)</h3>
+            <p>Kumpulkan file tugasmu dalam bentuk:</p>
+            <ul>
+                <li><strong>Format File:</strong> PNG/PDF kualitas tinggi atau lampirkan <em>Link Share</em> (dengan akses melihat/view) dari Canva atau Figma milikmu.</li>
+                <li><strong>Penamaan File:</strong> <code>DesainGrafis_Nirmana2D_NamaSiswa_Kelas.pdf</code></li>
+            </ul>
+
+            <h3>5. Lembar Penilaian Guru (Self-Check Siswa)</h3>
+            <p>Gunakan tabel ini untuk memeriksa karyamu sebelum dikumpulkan:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">Indikator Penilaian</th>
+                        <th style="width: 50%;">Kriteria Utama</th>
+                        <th style="width: 20%; text-align: center;">Skala Ceklist</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kemahiran Navigasi Menu Shapes</strong></td>
+                        <td>Menggunakan tool <em>Shapes</em> (garis, lingkaran, persegi) secara presisi, rapi, dan efisien sesuai aplikasi pilihan (Canva/Figma).</td>
+                        <td style="text-align: center;">[ &nbsp; ] Ya &nbsp;/&nbsp; [ &nbsp; ] Belum</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Penerapan 3 Elemen Dwimatra</strong></td>
+                        <td>Menampilkan kombinasi yang seimbang dan jelas antara <strong>titik</strong>, <strong>garis</strong>, dan <strong>bidang</strong> dalam satu komposisi.</td>
+                        <td style="text-align: center;">[ &nbsp; ] Ya &nbsp;/&nbsp; [ &nbsp; ] Belum</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kepatuhan Pada Aturan</strong></td>
+                        <td>Karya murni berbentuk geometri dasar, bebas dari penggunaan tekstur/foto, serta rapi.</td>
+                        <td style="text-align: center;">[ &nbsp; ] Ya &nbsp;/&nbsp; [ &nbsp; ] Belum</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION 2: CONTOH LANGKAH-DEMI-LANGKAH PENGERJAAN -->
+        <section id="panduan-langkah" class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="card-title-icon">2</span>
+                    Contoh Langkah-demi-Langkah Pengerjaan Nirmana 2D untuk Pemula
+                </h2>
+            </div>
+
+            <p style="margin-bottom: 20px;">Berikut adalah instruksi pengerjaan detail untuk siswa yang baru pertama kali menggunakan software Canva atau Figma:</p>
+
+            <div class="software-grid">
+                <!-- Step by step Canva -->
+                <div class="software-card canva">
+                    <h3 style="color: var(--accent-canva); margin-top: 0;">PILIHAN A: Langkah Pengerjaan di CANVA</h3>
+                    
+                    <h4>Langkah 1: Menyiapkan Kanvas Kerja</h4>
+                    <ol>
+                        <li>Buka <a href="https://www.canva.com" target="_blank" rel="noopener">canva.com</a> dan login.</li>
+                        <li>Klik tombol <strong>Buat Desain (<em>Create a design</em>)</strong> di pojok kanan atas.</li>
+                        <li>Pilih <strong>Ukuran Khusus (<em>Custom size</em>)</strong>, ketik <strong>1080 x 1080 piksel</strong>, lalu klik <strong>Buat Desain Baru</strong>.</li>
+                        <li>Biarkan latar belakang (<em>background</em>) berwarna putih polos.</li>
+                    </ol>
+
+                    <h4>Langkah 2: Membuat Elemen Titik</h4>
+                    <ol>
+                        <li>Tekan tombol huruf <kbd>C</kbd> di keyboard untuk memunculkan bentuk <strong>Lingkaran</strong>.</li>
+                        <li>Perkecil ukuran lingkaran tersebut hingga berukuran sangat kecil menyerupai <strong>titik</strong>.</li>
+                        <li>Beri warna hitam pada titik tersebut.</li>
+                        <li>Duplikat titik dengan menekan tombol <kbd>Ctrl + D</kbd> (atau <kbd>Cmd + D</kbd> di Mac) berulang kali.</li>
+                        <li>Susun kumpulan titik tersebut hingga membentuk irama (misalnya: dari titik yang rapat secara bertahap menjadi renggang).</li>
+                    </ol>
+
+                    <h4>Langkah 3: Membuat Elemen Garis</h4>
+                    <ol>
+                        <li>Tekan tombol huruf <kbd>L</kbd> di keyboard untuk memunculkan <strong>Garis</strong>.</li>
+                        <li>Klik pada garis tersebut, lalu lihat barisan menu di bagian atas:
+                            <ul>
+                                <li>Atur ketebalan garis pada opsi <strong>Model Garis / Ketebalan Garis</strong>.</li>
+                                <li>Ubah warna garis menjadi hitam atau abu-abu tua.</li>
+                            </ul>
+                        </li>
+                        <li>Buat beberapa garis dengan ketebalan yang bervariasi (ada yang tebal, sedang, dan tipis) serta arah yang berbeda (horisontal, vertikal, atau diagonal).</li>
+                    </ol>
+
+                    <h4>Langkah 4: Membuat Elemen Bidang</h4>
+                    <ol>
+                        <li>Tekan tombol huruf <kbd>R</kbd> untuk memunculkan <strong>Persegi/Bidang</strong>.</li>
+                        <li>Atau masuk ke menu <strong>Elemen</strong> &gt; <strong>Garis & Bentuk</strong> untuk memilih segitiga atau bentuk geometri lainnya.</li>
+                        <li>Ubah skala/ukuran bidang (buat ada yang berukuran besar sebagai pusat perhatian, dan sedang/kecil sebagai penyeimbang).</li>
+                    </ol>
+
+                    <h4>Langkah 5: Mengatur Komposisi Nirmana (Eksplorasi Layout)</h4>
+                    <ol>
+                        <li>Miringkan atau putar (<em>rotate</em>) beberapa bentuk dengan menarik ikon putar di bawah elemen.</li>
+                        <li>Atur urutan tumpukan objek: Klik kanan pada bentuk &gt; <strong>Posisi (<em>Position</em>)</strong> &gt; pilih <strong>Maju (<em>Bring Forward</em>)</strong> atau <strong>Mundur (<em>Send Backward</em>)</strong> jika ingin menumpuk elemen.</li>
+                        <li>Pastikan komposisi terlihat seimbang (<em>balanced</em>), tidak menumpuk hanya di satu pojok.</li>
+                    </ol>
+
+                    <h4>Langkah 6: Menyimpan & Mengunduh Karya</h4>
+                    <ol>
+                        <li>Klik tombol <strong>Bagikan (<em>Share</em>)</strong> di pojok kanan atas.</li>
+                        <li>Pilih <strong>Unduh (<em>Download</em>)</strong>.</li>
+                        <li>Pilih Jenis File: <strong>PNG</strong> atau <strong>PDF Standard</strong>.</li>
+                        <li>Klik <strong>Unduh</strong>.</li>
+                    </ol>
+                </div>
+
+                <!-- Step by step Figma -->
+                <div class="software-card figma">
+                    <h3 style="color: var(--accent-figma); margin-top: 0;">PILIHAN B: Langkah Pengerjaan di FIGMA</h3>
+                    
+                    <h4>Langkah 1: Membuat Frame / Kanvas</h4>
+                    <ol>
+                        <li>Buka <a href="https://www.figma.com" target="_blank" rel="noopener">figma.com</a> dan buat <em>Design File</em> baru.</li>
+                        <li>Tekan tombol <kbd>F</kbd> pada keyboard, lalu klik dan tahan (<em>drag</em>) di area kerja hingga membentuk persegi, atau pilih preset <strong>Instagram Post (1080 x 1080)</strong> di panel kanan.</li>
+                        <li>Beri nama Frame kamu: <code>Nirmana_NamaSiswa</code>.</li>
+                    </ol>
+
+                    <h4>Langkah 2: Membuat Elemen Titik</h4>
+                    <ol>
+                        <li>Tekan tombol <kbd>O</kbd> untuk memilih alat <strong>Ellipse</strong> (Lingkaran).</li>
+                        <li>Tahan tombol <kbd>Shift</kbd> sambil <em>drag</em> kursor agar lingkarannya bulat sempurna.</li>
+                        <li>Buat ukurannya kecil (misal: 8x8 piksel) hingga menjadi <strong>titik</strong>.</li>
+                        <li>Di panel kanan pada bagian <strong>Fill</strong>, ubah warnanya menjadi hitam solid (<code>#000000</code>).</li>
+                        <li>Duplikat titik dengan menekan <kbd>Ctrl + D</kbd> (atau <kbd>Cmd + D</kbd> di Mac) lalu sebar untuk membentuk pola titik.</li>
+                    </ol>
+
+                    <h4>Langkah 3: Membuat Elemen Garis</h4>
+                    <ol>
+                        <li>Tekan tombol <kbd>L</kbd> untuk memilih alat <strong>Line</strong>.</li>
+                        <li>Tahan tombol <kbd>Shift</kbd> saat menarik garis agar lurus presisi (0°, 45°, atau 90°).</li>
+                        <li>Di panel kanan pada bagian <strong>Stroke</strong>, ubah ketebalan garis (misal: 2px, 5px, atau 10px).</li>
+                    </ol>
+
+                    <h4>Langkah 4: Membuat Elemen Bidang</h4>
+                    <ol>
+                        <li>Tekan tombol <kbd>R</kbd> untuk membuat <strong>Rectangle</strong> (Persegi) atau klik tanda panah di sebelah ikon shape di toolbar atas untuk memilih <strong>Polygon</strong> (Segitiga/Bintang).</li>
+                        <li>Tentukan ukuran bidang besar dan kecil.</li>
+                        <li>Atur warna pada bagian <strong>Fill</strong> (gunakan warna hitam, putih dengan <em>stroke</em> tebal, atau variasi warna abu-abu solid).</li>
+                    </ol>
+
+                    <h4>Langkah 5: Mengatur Komposisi & Struktur Layer</h4>
+                    <ol>
+                        <li><strong>Memutar bentuk:</strong> Arahkan kursor ke dekat sudut luar bentuk hingga kursor berubah menjadi ikon panah melengkung, lalu putar.</li>
+                        <li><strong>Mengatur susunan tumpukan (Layer):</strong>
+                            <ul>
+                                <li>Tekan <kbd>[</kbd> untuk memindahkan objek ke belakang.</li>
+                                <li>Tekan <kbd>]</kbd> untuk memindahkan objek ke depan.</li>
+                            </ul>
+                        </li>
+                        <li>Kelompokkan (<em>Group</em>) bentuk jika diperlukan dengan memblok elemen-elemen tersebut lalu tekan <kbd>Ctrl + G</kbd>.</li>
+                    </ol>
+
+                    <h4>Langkah 6: Meng-ekspor Karya</h4>
+                    <ol>
+                        <li>Klik pada nama <strong>Frame</strong> kamu di kanvas.</li>
+                        <li>Lihat panel kanan paling bawah, cari bagian <strong>Export</strong>.</li>
+                        <li>Pilih format <strong>PNG</strong> atau <strong>PDF</strong>, lalu klik tombol <strong>Export [Nama Frame]</strong>.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Tips Pemula Box -->
+            <div class="tip-box">
+                <h4>💡 Tips Penting Pemula saat Mengarang Nirmana 2D:</h4>
+                <ul>
+                    <li><strong>Jaga Prinsip Monokrom/Flat:</strong> Agar fokus pada bentuk dasar (geometri), gunakan variasi warna terbatas seperti hitam, putih, dan tingkatan abu-abu (<em>grayscale</em>).</li>
+                    <li><strong>Eksplorasi Kontras:</strong> Sandingkan elemen yang sangat besar dengan elemen yang sangat kecil untuk menciptakan fokus utama (<em>focal point</em>).</li>
+                    <li><strong>Coba Berbagai Jarak:</strong> Dekatkan beberapa titik/garis hingga terasa padat, dan renggangkan di bagian lain untuk memberikan "ruang bernapas" (<em>white space</em>) pada desain.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION 3: LEMBAR KERJA SISWA (LKS INTERAKTIF) -->
+        <section id="sec-lks" class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="card-title-icon">3</span>
+                    LEMBAR KERJA SISWA (LKS INTERAKTIF)
+                </h2>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn-action btn-reset" onclick="resetForm()" title="Bersihkan semua Isian">🔄 Reset Form</button>
+                    <button class="btn-action btn-download-doc" onclick="downloadDoc('export-lks-area', 'LKS_Desain_Grafis_Nirmana_2D')">
+                        📄 Download LKS Terisi (.doc)
+                    </button>
+                </div>
+            </div>
+
+            <!-- AREA ISI LKS UNTUK DI-EKSPOR KE DOC -->
+            <div id="export-lks-area">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Mata Pelajaran</div>
+                        <div class="info-value">Desain Grafis</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Materi</div>
+                        <div class="info-value">Elemen Dasar Dwimatra & Shapes</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Alokasi Waktu</div>
+                        <div class="info-value">2 x 45 Menit</div>
+                    </div>
+                </div>
+
+                <!-- Identitas Siswa Form -->
+                <div style="background-color: #f8fafc; border: 1px solid var(--border-color); padding: 20px; border-radius: 10px; margin-bottom: 24px;">
+                    <h3 style="margin-top: 0; margin-bottom: 16px;">Identitas Siswa</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                        <div class="form-group">
+                            <label class="form-label" for="input-nama">Nama Lengkap:</label>
+                            <input type="text" id="input-nama" class="form-input" placeholder="Masukkan nama lengkap...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="input-kelas">Kelas / No. Absen:</label>
+                            <input type="text" id="input-kelas" class="form-input" placeholder="Contoh: X DKV 1 / 15">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label">Software yang Dipilih:</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="radio" name="software" value="Canva"> Canva</label>
+                            <label class="checkbox-label"><input type="radio" name="software" value="Figma"> Figma</label>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>A. Tujuan Pembelajaran</h3>
+                <p>Melalui lembar kerja ini, kamu diharapkan mampu:</p>
+                <ol>
+                    <li>Mengidentifikasi fungsi elemen titik, garis, dan bidang dalam komposisi 2D.</li>
+                    <li>Memanfaatkan menu <em>Shapes</em> dan <em>shortcut</em> dasar pada Canva/Figma secara terampil.</li>
+                    <li>Membuat karya <strong>Kanvas Eksplorasi 2D</strong> menggunakan kombinasi bentuk geometri dasar tanpa tekstur.</li>
+                </ol>
+
+                <h3>B. Alat dan Bahan</h3>
+                <ol>
+                    <li>Komputer / Laptop / Tablet yang terhubung ke internet.</li>
+                    <li>Akun Canva atau Figma yang sudah aktif.</li>
+                </ol>
+
+                <h3>C. Bagian 1: Uji Konsep Dasar (Jawab Ringkas)</h3>
+                
+                <div class="form-group">
+                    <label class="form-label" for="input-q1">1. Jelaskan perbedaan mendasar antara elemen <strong>Garis</strong> dan <strong>Bidang</strong> berdasarkan pembentukannya!</label>
+                    <textarea id="input-q1" class="form-input" placeholder="Tuliskan jawabanmu di sini..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="input-q2">2. Mengapa dalam tugas eksplorasi Nirmana 2D ini kamu <strong>dilarang</strong> menggunakan tekstur, efek gradasi kompleks, atau foto?</label>
+                    <textarea id="input-q2" class="form-input" placeholder="Tuliskan jawabanmu di sini..."></textarea>
+                </div>
+
+                <h3>D. Bagian 2: Lembar Penugasan Praktik</h3>
+                <p><strong>Nama Tugas:</strong> Kanvas Eksplorasi 2D</p>
+                <p><strong>Instruksi Kerja:</strong></p>
+                <ol>
+                    <li>Buat <strong>1 Dokumen Baru</strong> di Canva/Figma dengan ukuran <strong>1080 x 1080 px</strong>.</li>
+                    <li>Buat <strong>2 Halaman/Frame</strong> dengan ketentuan:
+                        <ul>
+                            <li><strong>Halaman 1 (Komposisi Irama):</strong> Susun titik, garis, dan bidang hingga membentuk kesan pengulangan, gerak, atau alur berirama.</li>
+                            <li><strong>Halaman 2 (Komposisi Kontras/Focal Point):</strong> Susun bentuk sedemikian rupa sehingga ada <strong>satu area yang paling mencolok</strong> (pusat perhatian utama) dibanding elemen lainnya.</li>
+                        </ul>
+                    </li>
+                    <li>Gunakan hanya warna solid (<em>black, white, grayscale</em>, atau maksimal 2 warna flat penyeimbang).</li>
+                    <li><strong>Dilarang</strong> menggunakan gambar/elemen siap pakai di luar menu <em>Shapes/Geometri</em> dasar!</li>
+                </ol>
+
+                <!-- Siswa Mengunggah Hasil Karya Langsung di Sini -->
+                <div class="form-group" style="margin-top: 20px;">
+                    <label class="form-label">📷 Lampirkan Hasil Karya Digital (Upload atau Drag & Drop Gambar):</label>
+                    <div class="upload-container">
+                        <div class="upload-card" id="drop-zone-1" onclick="document.getElementById('file-input-1').click()">
+                            <strong>Variasi 1: Komposisi Irama</strong>
+                            <div class="upload-hint">Klik atau tarik file gambar (PNG/JPG) ke sini</div>
+                            <input type="file" id="file-input-1" accept="image/*" class="form-input" style="display:none;" onchange="previewImage(this, 'img-preview-1')">
+                            <img id="img-preview-1" class="preview-img" alt="Pratinjau Karya Variasi 1">
+                        </div>
+                        <div class="upload-card" id="drop-zone-2" onclick="document.getElementById('file-input-2').click()">
+                            <strong>Variasi 2: Komposisi Kontras / Focal Point</strong>
+                            <div class="upload-hint">Klik atau tarik file gambar (PNG/JPG) ke sini</div>
+                            <input type="file" id="file-input-2" accept="image/*" class="form-input" style="display:none;" onchange="previewImage(this, 'img-preview-2')">
+                            <img id="img-preview-2" class="preview-img" alt="Pratinjau Karya Variasi 2">
+                        </div>
+                    </div>
+                </div>
+
+                <h3>E. Bagian 3: Lembar Refleksi & Self-Assessment Siswa</h3>
+                <p>Berikan tanda centang (&checkmark;) sesuai dengan apa yang kamu rasakan selama pengerjaan:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">Pernyataan Refleksi</th>
+                            <th style="width: 16%; text-align: center;">Sangat Baik</th>
+                            <th style="width: 16%; text-align: center;">Cukup</th>
+                            <th style="width: 18%; text-align: center;">Perlu Belajar Lagi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Saya hafal dan lancar menggunakan <em>shortcut</em> pembuatan <em>shape</em> (C, R, L, O).</td>
+                            <td style="text-align: center;"><input type="radio" name="ref1" value="Sangat Baik"></td>
+                            <td style="text-align: center;"><input type="radio" name="ref1" value="Cukup"></td>
+                            <td style="text-align: center;"><input type="radio" name="ref1" value="Perlu Belajar Lagi"></td>
+                        </tr>
+                        <tr>
+                            <td>Saya mampu membedakan penerapan elemen titik, garis, dan bidang pada karya saya.</td>
+                            <td style="text-align: center;"><input type="radio" name="ref2" value="Sangat Baik"></td>
+                            <td style="text-align: center;"><input type="radio" name="ref2" value="Cukup"></td>
+                            <td style="text-align: center;"><input type="radio" name="ref2" value="Perlu Belajar Lagi"></td>
+                        </tr>
+                        <tr>
+                            <td>Saya dapat mengatur susunan tumpukan (<em>layer</em>) dan perataan (<em>alignment</em>) objek dengan rapi.</td>
+                            <td style="text-align: center;"><input type="radio" name="ref3" value="Sangat Baik"></td>
+                            <td style="text-align: center;"><input type="radio" name="ref3" value="Cukup"></td>
+                            <td style="text-align: center;"><input type="radio" name="ref3" value="Perlu Belajar Lagi"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label class="form-label" for="input-kendala">Tuliskan 1 kendala teknis terbesar yang kamu temui dan bagaimana kamu memecahkannya:</label>
+                    <textarea id="input-kendala" class="form-input" placeholder="Tuliskan kendala dan solusi yang kamu temukan..."></textarea>
+                </div>
+
+                <h3>F. Lembar Pengumpulan Karya</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                    <div class="form-group">
+                        <label class="form-label" for="input-link">Link Share Karya (Akses View):</label>
+                        <input type="text" id="input-link" class="form-input" placeholder="https://canva.com/... atau https://figma.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="input-filename-info">Nama File Ekspor Standard:</label>
+                        <input type="text" id="input-filename-info" class="form-input" value="DesainGrafis_Nirmana2D_NamaSiswa_Kelas.pdf" readonly style="color: var(--text-muted); background-color: #f1f5f9;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: MODUL PRAKTIKUM DESAIN GRAFIS -->
+        <section id="sec-praktikum" class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="card-title-icon">4</span>
+                    MODUL PRAKTIKUM DESAIN GRAFIS
+                </h2>
+                <!-- Tombol Download DOC Khusus Modul Praktikum -->
+                <button class="btn-action btn-download-doc" onclick="downloadDoc('export-praktikum-area', 'Modul_Praktikum_Desain_Grafis_Nirmana_2D')">
+                    📄 Download Modul (.doc)
+                </button>
+            </div>
+
+            <!-- AREA ISI MODUL PRAKTIKUM UNTUK DI-EKSPOR KE DOC -->
+            <div id="export-praktikum-area">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Topik Utama</div>
+                        <div class="info-value">Navigasi Shapes & Komposisi 2D</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Target Bukti Karya</div>
+                        <div class="info-value">Kanvas Eksplorasi 2D</div>
+                    </div>
+                </div>
+
+                <h3>1. Standar Operasional Praktikum (SOP)</h3>
+                <p>Sebelum memulai praktik di lab komputer atau perangkat mandiri, pastikan:</p>
+                <ol>
+                    <li>Perangkat terhubung ke koneksi internet yang stabil.</li>
+                    <li>Resolusi kanvas utama diatur tepat pada <strong>1080 x 1080 px</strong> (skala 1:1).</li>
+                    <li>Mode warna fokus pada penggunaan warna solid (<em>Flat Color/Monochrome</em>) untuk melatih kepekaan bentuk (<em>form</em>) sebelum masuk ke materi warna lanjutan.</li>
+                </ol>
+
+                <h3>2. Panduan Eksekusi Navigasi Tools Shapes</h3>
+
+                <h4>A. Penguasaan Fitur di CANVA</h4>
+                <div class="diagram-box">
+                    [ Menu Elemen ] ───&gt; [ Garis & Bentuk ] ───&gt; [ Pilihan Geometri ]
+                </div>
+                <p><strong>Operasi Objek Utama:</strong></p>
+                <ul>
+                    <li><strong>Shortcut Cepat:</strong> Tekan <kbd>C</kbd> (Circle), <kbd>R</kbd> (Rectangle), <kbd>L</kbd> (Line).</li>
+                    <li><strong>Pengaturan Skala Presisi:</strong> Tahan tombol <kbd>Shift</kbd> saat menggeser sudut objek agar proporsi lebar dan tinggi tetap seimbang.</li>
+                    <li><strong>Hierarki Layer:</strong> Klik kanan objek &rarr; <strong>Posisi (<em>Position</em>)</strong> &rarr; Pilih <strong>Maju (<em>Bring Forward</em>)</strong> atau <strong>Mundur (<em>Send Backward</em>)</strong>.</li>
+                    <li><strong>Duplikasi Cepat:</strong> Pilih objek &rarr; Tekan <kbd>Ctrl + D</kbd> (<kbd>Cmd + D</kbd> di Mac).</li>
+                </ul>
+
+                <h4>B. Penguasaan Fitur di FIGMA</h4>
+                <div class="diagram-box">
+                    [ Top Toolbar ] ───&gt; [ Shape Tools ] ───&gt; [ Rectangle / Ellipse / Line / Polygon ]
+                </div>
+                <p><strong>Operasi Objek Utama:</strong></p>
+                <ul>
+                    <li><strong>Shortcut Cepat:</strong> Tekan <kbd>R</kbd> (Rectangle), <kbd>O</kbd> (Ellipse), <kbd>L</kbd> (Line).</li>
+                    <li><strong>Mengatur Tebal Garis (<em>Stroke</em>):</strong> Atur angka pada panel kanan bagian <strong>Stroke</strong> (misal: 2px untuk garis halus, 12px untuk garis tebal).</li>
+                    <li><strong>Hierarki Layer:</strong>
+                        <ul>
+                            <li>Tekan <kbd>[</kbd> untuk memindahkan layer ke bawah.</li>
+                            <li>Tekan <kbd>]</kbd> untuk memindahkan layer ke atas.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Mengelompokkan Objek:</strong> Blok beberapa elemen &rarr; Tekan <kbd>Ctrl + G</kbd> (<kbd>Cmd + G</kbd> di Mac).</li>
+                </ul>
+
+                <h3>3. Skenario Latihan Langkah-demi-Langkah</h3>
+
+                <h4>Skenario 1: Membangun Komposisi Irama (Halaman 1)</h4>
+                <ol>
+                    <li><strong>Titik:</strong> Buat 1 lingkaran kecil berukuran 10x10 px. Duplikat menjadi 10-15 titik. Susun membentuk alur melengkung atau gelombang dari kerapatan rapat ke renggang.</li>
+                    <li><strong>Garis:</strong> Buat 3 garis sejajar dengan ketebalan berbeda (misal: 2px, 6px, 12px) yang memotong alur titik untuk menciptakan arah gerakan (<em>directional flow</em>).</li>
+                    <li><strong>Bidang:</strong> Tambahkan 2 bidang persegi atau segitiga berukuran sedang di latar belakang untuk mengikat kelompok titik dan garis tersebut.</li>
+                </ol>
+
+                <h4>Skenario 2: Membangun Pusat Perhatian / Focal Point (Halaman 2)</h4>
+                <ol>
+                    <li><strong>Bidang Utama:</strong> Buat 1 bidang dominan berukuran besar di area off-center (agak ke kiri atau kanan atas, gunakan prinsip <em>rule of thirds</em>).</li>
+                    <li><strong>Kontras Titik & Garis:</strong> Lingkupi bidang utama tersebut dengan sekumpulan titik kecil atau garis-garis tipis terpancar.</li>
+                    <li><strong>Penyeimbang:</strong> Letakkan 1 elemen bidang sangat kecil di area sudut berlawanan sebagai penyeimbang bobot visual (<em>visual weight balance</em>).</li>
+                </ol>
+
+                <h3>4. Rubrik Penilaian Guru (Scoring Rubric)</h3>
+                <p>Gunakan rubrik berikut untuk mengevaluasi <strong>Kanvas Eksplorasi 2D</strong> milik siswa:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Kriteria Penilaian</th>
+                            <th style="width: 10%; text-align: center;">Skor Maks.</th>
+                            <th style="width: 25%;">Indikator Penilaian Sangat Baik (85 - 100)</th>
+                            <th style="width: 25%;">Indikator Penilaian Cukup (70 - 84)</th>
+                            <th style="width: 20%;">Indikator Perlu Bimbingan (&lt; 70)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Kemahiran Navigasi Menu Shapes</strong></td>
+                            <td style="text-align: center; font-weight: 700; color: var(--primary);">40</td>
+                            <td>Mahir menggunakan <em>shortcut</em>, pengaturan <em>layering</em>, skala, dan <em>alignment</em> objek sangat rapi dan presisi.</td>
+                            <td>Mampu menggunakan menu <em>shapes</em>, namun masih manual (jarang pakai <em>shortcut</em>) dan susunan <em>layer</em> sedikit berantakan.</td>
+                            <td>Kesulitan mencari menu <em>shapes</em>, posisi objek tidak tertata, dan tidak presisi.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kesesuaian Penerapan 3 Elemen 2D</strong></td>
+                            <td style="text-align: center; font-weight: 700; color: var(--primary);">40</td>
+                            <td>Mengombinasikan <strong>titik, garis, dan bidang</strong> secara seimbang, variatif, dan sesuai dengan skenario/irama/focal point.</td>
+                            <td>Hanya menggunakan 1 atau 2 elemen secara dominan (misal: hanya bidang dan garis tanpa titik).</td>
+                            <td>Tidak menunjukkan pemahaman elemen dasar; asal menempelkan bentuk tanpa struktur.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kedisiplinan & Aturan Teknis</strong></td>
+                            <td style="text-align: center; font-weight: 700; color: var(--primary);">20</td>
+                            <td>Bebas dari tekstur/gambar siap pakai, mematuhi ukuran kanvas (1080x1080 px), dan mengumpul tepat waktu.</td>
+                            <td>Mematuhi ukuran kanvas, tetapi secara tidak sengaja menggunakan tekstur/gradasi kompleks.</td>
+                            <td>Menggunakan gambar/ilustrasi siap pakai dari internet dan ukuran kanvas tidak sesuai.</td>
+                        </tr>
+                        <tr style="background-color: var(--primary-light); font-weight: 700;">
+                            <td><strong>TOTAL SKOR</strong></td>
+                            <td style="text-align: center; color: var(--primary-dark); font-size: 1.1rem;">100</td>
+                            <td colspan="3" style="text-align: right; color: var(--text-muted); font-size: 0.85rem;"><em>Evaluasi akhir berdasarkan akumulasi skor indikator di atas.</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="toast">Data berhasil disimpan secara otomatis!</div>
+
+    <footer class="footer">
+        <p>&copy; Modul Pembelajaran & LKS Desain Grafis — Nirmana 2D. Siap digunakan untuk aktivitas kelas dan laboratorium.</p>
+    </footer>
+
+    <!-- Script Interaktif LKS (Auto-Save, Drag & Drop Image Preview, & DOC Export) -->
+    <script>
+        // Fungsi Notifikasi Toast
+        function showToast(message) {
+            var toast = document.getElementById('toast');
+            if (!toast) return;
+            toast.innerText = message;
+            toast.classList.add('show');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // Fungsi Pratinjau Gambar Upload
+        function previewImage(input, previewId) {
+            var file = input.files ? input.files[0] : null;
+            if (!file) return;
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var preview = document.getElementById(previewId);
+                if (preview) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    saveFormData();
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Setup Drag & Drop untuk Upload Gambar
+        function setupDragAndDrop() {
+            [1, 2].forEach(function(num) {
+                var zone = document.getElementById('drop-zone-' + num);
+                var input = document.getElementById('file-input-' + num);
+                var previewId = 'img-preview-' + num;
+
+                if (!zone || !input) return;
+
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    zone.addEventListener(eventName, function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        zone.classList.add('dragover');
+                    }, false);
+                });
+
+                ['dragleave', 'drop'].forEach(eventName => {
+                    zone.addEventListener(eventName, function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        zone.classList.remove('dragover');
+                    }, false);
+                });
+
+                zone.addEventListener('drop', function(e) {
+                    var dt = e.dataTransfer;
+                    var files = dt.files;
+                    if (files && files.length > 0) {
+                        input.files = files;
+                        previewImage(input, previewId);
+                    }
+                }, false);
+            });
+        }
+
+        // Fungsi Menyimpan Data Otomatis di LocalStorage
+        function saveFormData() {
+            var data = {};
+            
+            // Simpan Input Teks dan Textarea
+            document.querySelectorAll('#sec-lks input[type="text"], #sec-lks textarea').forEach(function(el) {
+                if (el.id) data[el.id] = el.value;
+            });
+            
+            // Simpan Pilihan Radio & Checkbox
+            document.querySelectorAll('#sec-lks input[type="radio"]:checked, #sec-lks input[type="checkbox"]:checked').forEach(function(el) {
+                if (el.name) data['check_' + el.name] = el.value;
+            });
+
+            // Simpan Base64 Gambar
+            var img1 = document.getElementById('img-preview-1');
+            var img2 = document.getElementById('img-preview-2');
+            if (img1 && img1.src && img1.style.display !== 'none') data['img1'] = img1.src;
+            if (img2 && img2.src && img2.style.display !== 'none') data['img2'] = img2.src;
+
+            localStorage.setItem('lks_nirmana_2d_v2', JSON.stringify(data));
+        }
+
+        // Fungsi Memuat Data yang Tersimpan Saat Dibuka
+        function loadFormData() {
+            var saved = localStorage.getItem('lks_nirmana_2d_v2');
+            if (!saved) return;
+            try {
+                var data = JSON.parse(saved);
+                Object.keys(data).forEach(function(key) {
+                    if (key.startsWith('check_')) {
+                        var name = key.replace('check_', '');
+                        var val = data[key];
+                        var el = document.querySelector(`#sec-lks input[name="${name}"][value="${val}"]`);
+                        if (el) el.checked = true;
+                    } else if (key === 'img1') {
+                        var img1 = document.getElementById('img-preview-1');
+                        if (img1) { img1.src = data[key]; img1.style.display = 'block'; }
+                    } else if (key === 'img2') {
+                        var img2 = document.getElementById('img-preview-2');
+                        if (img2) { img2.src = data[key]; img2.style.display = 'block'; }
+                    } else {
+                        var el = document.getElementById(key);
+                        if (el) el.value = data[key];
+                    }
+                });
+            } catch(e) { 
+                console.error('Gagal memuat data tersimpan:', e); 
+            }
+        }
+
+        // Initializer Event
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFormData();
+            setupDragAndDrop();
+
+            var saveTimeout;
+            document.querySelectorAll('#sec-lks input, #sec-lks textarea').forEach(function(el) {
+                el.addEventListener('input', function() {
+                    saveFormData();
+                    clearTimeout(saveTimeout);
+                    saveTimeout = setTimeout(function() { showToast('Isian disimpan otomatis'); }, 1000);
+                });
+                el.addEventListener('change', saveFormData);
+            });
+        });
+
+        // Fungsi Reset Form LKS
+        function resetForm() {
+            if (confirm('Apakah Anda yakin ingin mengosongkan seluruh isian di Lembar Kerja ini?')) {
+                localStorage.removeItem('lks_nirmana_2d_v2');
+                document.querySelectorAll('#sec-lks input[type="text"], #sec-lks textarea').forEach(function(el) {
+                    el.value = '';
+                });
+                document.querySelectorAll('#sec-lks input[type="radio"], #sec-lks input[type="checkbox"]').forEach(function(el) {
+                    el.checked = false;
+                });
+                var img1 = document.getElementById('img-preview-1');
+                var img2 = document.getElementById('img-preview-2');
+                if (img1) { img1.src = ''; img1.style.display = 'none'; }
+                if (img2) { img2.src = ''; img2.style.display = 'none'; }
+                
+                showToast('Isian Lembar Kerja telah dibersihkan.');
+            }
+        }
+
+        // Fungsi Ekspor LKS / Modul ke Format Microsoft Word (.doc)
+        function downloadDoc(elementId, fileName) {
+            var container = document.getElementById(elementId);
+            if (!container) return;
+
+            var clone = container.cloneNode(true);
+
+            // Sembunyikan elemen upload & instruksi di dokumen Word
+            clone.querySelectorAll('input[type="file"], .upload-hint').forEach(function(input) {
+                input.style.display = 'none';
+            });
+
+            // Konversi nilai input & textarea menjadi teks visual/elemen yang rapi di Word
+            var origInputs = container.querySelectorAll('input, textarea, select');
+            var cloneInputs = clone.querySelectorAll('input, textarea, select');
+
+            origInputs.forEach(function(orig, idx) {
+                var cloned = cloneInputs[idx];
+                if (!cloned) return;
+
+                var tag = orig.tagName.toLowerCase();
+                var type = orig.getAttribute('type') ? orig.getAttribute('type').toLowerCase() : 'text';
+
+                if (tag === 'textarea') {
+                    var p = document.createElement('div');
+                    p.style.cssText = "padding: 8px; border: 1px solid #cbd5e1; background: #fafafa; min-height: 50px; font-style: italic;";
+                    p.innerHTML = orig.value ? orig.value.replace(/\n/g, '<br>') : '<span style="color:#aaa;">(Belum diisi)</span>';
+                    cloned.parentNode.replaceChild(p, cloned);
+                } else if (tag === 'input' && (type === 'checkbox' || type === 'radio')) {
+                    var span = document.createElement('span');
+                    span.style.fontWeight = 'bold';
+                    span.innerHTML = orig.checked ? '☑ [YA/TERPILIH]' : '☐';
+                    cloned.parentNode.replaceChild(span, cloned);
+                } else if (tag === 'input' && type === 'text') {
+                    var span = document.createElement('span');
+                    span.style.cssText = "border-bottom: 1px dotted #000; font-weight: bold; padding: 2px 8px;";
+                    span.innerText = orig.value ? orig.value : '..............................';
+                    cloned.parentNode.replaceChild(span, cloned);
+                }
+            });
+
+            // Pastikan gambar pratinjau karya ikut terbawa ke Word
+            var cloneImgs = clone.querySelectorAll('.preview-img');
+            var origImgs = container.querySelectorAll('.preview-img');
+            origImgs.forEach(function(origImg, idx) {
+                if (origImg.src && origImg.style.display !== 'none' && cloneImgs[idx]) {
+                    cloneImgs[idx].src = origImg.src;
+                    cloneImgs[idx].style.display = 'block';
+                    cloneImgs[idx].style.maxWidth = '380px';
+                }
+            });
+
+            var content = clone.innerHTML;
+            
+            var header = "<html xmlns:o='urn:schemas-microsoft-microsoft-com:office:office' "+
+                "xmlns:w='urn:schemas-microsoft-microsoft-com:office:word' "+
+                "xmlns='http://www.w3.org/TR/REC-html40'>"+
+                "<head><meta charset='utf-8'><title>Export to Word</title>"+
+                "<style>"+
+                "body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; } "+
+                "h2 { color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 5px; } "+
+                "h3 { color: #1e293b; margin-top: 20px; } "+
+                "h4 { color: #334155; } "+
+                "table { border-collapse: collapse; width: 100%; margin: 15px 0; } "+
+                "th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; vertical-align: top; } "+
+                "th { background-color: #f1f5f9; font-weight: bold; } "+
+                ".info-grid { display: table; width: 100%; margin-bottom: 15px; } "+
+                ".info-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; margin-bottom: 8px; } "+
+                ".form-group { margin-bottom: 12px; } "+
+                ".form-label { font-weight: bold; display: block; margin-bottom: 4px; } "+
+                ".diagram-box { background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; font-family: monospace; text-align: center; margin: 10px 0; } "+
+                "kbd { background: #eee; border: 1px solid #ccc; padding: 2px 5px; font-family: monospace; } "+
+                ".upload-container { display: flex; gap: 15px; } "+
+                ".upload-card { border: 1px dashed #ccc; padding: 10px; text-align: center; } "+
+                "img { max-width: 380px; height: auto; margin-top: 10px; } "+
+                "</style></head><body>";
+                
+            var footerHtml = "</body></html>";
+            var html = header + content + footerHtml;
+
+            var blob = new Blob(['\ufeff', html], {
+                type: 'application/msword'
+            });
+
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            
+            // Nama File Terisi
+            var namaSiswa = document.getElementById('input-nama') ? document.getElementById('input-nama').value.trim() : '';
+            var finalFileName = fileName + (namaSiswa ? '_' + namaSiswa.replace(/\s+/g, '_') : '') + '.doc';
+            
+            a.download = finalFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast('Dokumen Word berhasil dibuat!');
+        }
+    </script>
+</body>
+</html>
